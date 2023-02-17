@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="DormitoryManagementSystem" default="README">
+
+    <!-- Set properties -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+	<property name="classes.dir" value="classes" />
+	<property name="project_owner" value="group of 6 2nd year software engineering students in Bahir Dar university"/>
+
+    <!-- Define build targets -->
+	<target name="README">
+		<echo>This project is developed by ${project_owner}, and built by SGC with ${ant.version}.</echo>
+	</target>
+	
+    <target name="mkdir">
+        <mkdir dir="${build.dir}"/>
+    	<mkdir dir="${build.dir}/${classes.dir}"/>
+    </target>
+
+    <target name="compile" depends="mkdir">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/${classes.dir}"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${build.dir}/jar"/>
+        <jar destfile="${build.dir}/jar/DormitoryManagementSystem.jar" basedir="${build.dir}/${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="build" depends="jar"/>
+
+</project>
